@@ -1,0 +1,312 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10578,        304]
+NotebookOptionsPosition[      8105,        252]
+NotebookOutlinePosition[      8558,        269]
+CellTagsIndexPosition[      8515,        266]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Modules and Local Variables", "Section",
+ CellChangeTimes->{{3.9070830659275007`*^9, 
+  3.907083071378504*^9}},ExpressionUUID->"6b1c9583-33d9-415b-8604-\
+1a7913f73bc1"],
+
+Cell["\<\
+In mathematica, by default, all variables will belong to the global \
+namespace. However, using Modules allows us to define localized scope. \
+Consider the following example. \
+\>", "Text",
+ CellChangeTimes->{{3.907083073352227*^9, 
+  3.907083114963791*^9}},ExpressionUUID->"6a692685-4a4a-4c98-b9a3-\
+57c9792f83e2"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "a", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"exp", " ", "=", " ", 
+   RowBox[{
+    SuperscriptBox["a", "2"], "+", 
+    SuperscriptBox["b", "2"], "+", 
+    SuperscriptBox["c", "2"]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Module", "[", 
+  RowBox[{
+   RowBox[{"{", "a", "}"}], ",", " ", 
+   RowBox[{
+    RowBox[{"a", " ", "=", " ", "5"}], ";", " ", 
+    RowBox[{"Print", "[", "exp", "]"}]}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.907083121789864*^9, 3.907083145324926*^9}, 
+   3.907083323454994*^9},
+ CellLabel->"In[64]:=",ExpressionUUID->"c4792915-80c6-49da-b875-b12b7227f3d5"],
+
+Cell[BoxData[
+ RowBox[{
+  SuperscriptBox["a", "2"], "+", 
+  SuperscriptBox["b", "2"], "+", 
+  SuperscriptBox["c", "2"]}]], "Print",
+ CellChangeTimes->{{3.907083124238161*^9, 3.907083146306884*^9}},
+ CellLabel->
+  "During evaluation of \
+In[64]:=",ExpressionUUID->"f30d5695-e382-450e-9569-564d315bfc38"]
+}, Open  ]],
+
+Cell["\<\
+Naively one might think that setting a = 5 in the module would change the \
+symbolic value of exp. However, since a enters the local variable list in the \
+module definition, any a that is referred to inside the module is going to \
+really be the local version, not the global version. In particular, any \
+variable that appears in the local variable list, when referenced in the \
+function body, can be thought of as like this -> variable as in c++ or \
+similar languages. \
+\>", "Text",
+ CellChangeTimes->{{3.907083126651017*^9, 
+  3.9070832163411922`*^9}},ExpressionUUID->"48eb0347-a272-49c8-8d48-\
+849cf84c9e33"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "a", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"exp", " ", "=", " ", 
+   RowBox[{
+    SuperscriptBox["a", "2"], "+", 
+    SuperscriptBox["b", "2"], "+", 
+    SuperscriptBox["c", "2"]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Module", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"a", "=", "5"}], "}"}], ",", " ", 
+   RowBox[{"Print", "[", 
+    RowBox[{"Evaluate", "[", "exp", "]"}], "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.907083330131044*^9, 3.9070833598908777`*^9}},
+ CellLabel->"In[90]:=",ExpressionUUID->"90253b81-b106-41d1-831b-b4011630b800"],
+
+Cell[BoxData[
+ RowBox[{
+  SuperscriptBox["a", "2"], "+", 
+  SuperscriptBox["b", "2"], "+", 
+  SuperscriptBox["c", "2"]}]], "Print",
+ CellChangeTimes->{{3.907083335817177*^9, 3.907083360293347*^9}},
+ CellLabel->
+  "During evaluation of \
+In[90]:=",ExpressionUUID->"81957e90-a493-434a-845c-0f4b5eb08044"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Blocks", "Section",
+ CellChangeTimes->{{3.907083648277412*^9, 
+  3.907083656492951*^9}},ExpressionUUID->"9462d699-8e67-4798-9ea9-\
+6c367d8926c5"],
+
+Cell["\<\
+Blocks work in a different way to modules. Modules allow you to treat the \
+names of variables as local. Blocks allow you to global names to take on \
+temporary local values.\
+\>", "Text",
+ CellChangeTimes->{{3.9070836576550903`*^9, 3.907083664007012*^9}, {
+  3.907083700016798*^9, 
+  3.907083733500901*^9}},ExpressionUUID->"57528493-eda6-4ace-b010-\
+1ce0ea5cce44"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "a", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"exp", " ", "=", " ", 
+   RowBox[{
+    SuperscriptBox["a", "2"], "+", 
+    SuperscriptBox["b", "2"], "+", 
+    SuperscriptBox["c", "2"]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Block", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"a", "=", "10"}], "}"}], ",", " ", 
+   RowBox[{"Print", "[", "exp", "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "a", "]"}]}], "Input",
+ CellChangeTimes->{{3.907083673146639*^9, 
+  3.907083691579487*^9}},ExpressionUUID->"25e6e24a-8cbe-4b95-8629-\
+d46a153da723"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"100", "+", 
+  SuperscriptBox["b", "2"], "+", 
+  SuperscriptBox["c", "2"]}]], "Print",
+ CellChangeTimes->{{3.907083681065007*^9, 3.907083689360718*^9}},
+ CellLabel->
+  "During evaluation of \
+In[119]:=",ExpressionUUID->"12d19c51-97c3-4f68-81fa-e41a450210de"],
+
+Cell[BoxData["10"], "Print",
+ CellChangeTimes->{{3.907083681065007*^9, 3.9070836893650503`*^9}},
+ CellLabel->
+  "During evaluation of \
+In[119]:=",ExpressionUUID->"472fba33-3459-4d3c-958f-c92ef5766468"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{"ClearAll", "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"exp", "=", 
+   RowBox[{
+    SuperscriptBox["a", "2"], "+", 
+    SuperscriptBox["b", "2"], "+", 
+    SuperscriptBox["c", "2"]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Module", "[", 
+  RowBox[{
+   RowBox[{"{", "y", "}"}], ",", " ", 
+   RowBox[{
+    RowBox[{"y", " ", "=", " ", "5"}], ";", " ", 
+    RowBox[{"Print", "[", "exp", "]"}]}]}], 
+  "]"}], "\[IndentingNewLine]", "y"}], "Input",
+ CellChangeTimes->{{3.907083922277728*^9, 3.9070839813855963`*^9}},
+ CellLabel->
+  "In[149]:=",ExpressionUUID->"91812942-76c1-4cea-afa8-5d5849426802"],
+
+Cell[BoxData["ClearAll"], "Output",
+ CellChangeTimes->{{3.9070839669940157`*^9, 3.9070839815504208`*^9}},
+ CellLabel->
+  "Out[149]=",ExpressionUUID->"e6ea3f8f-aa92-4660-a1dc-15fd81abc77a"],
+
+Cell[BoxData[
+ RowBox[{
+  SuperscriptBox["a", "2"], "+", 
+  SuperscriptBox["b", "2"], "+", 
+  SuperscriptBox["c", "2"]}]], "Print",
+ CellChangeTimes->{{3.907083948296344*^9, 3.9070839815554953`*^9}},
+ CellLabel->
+  "During evaluation of \
+In[149]:=",ExpressionUUID->"4024b238-9153-4412-92f2-8d353dbf91db"],
+
+Cell[BoxData["5"], "Output",
+ CellChangeTimes->{{3.9070839669940157`*^9, 3.907083981557467*^9}},
+ CellLabel->
+  "Out[152]=",ExpressionUUID->"e54891b9-b92a-43bd-b419-a62780b251ee"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Miscellaneous", "Section",
+ CellChangeTimes->{{3.907084681631057*^9, 
+  3.907084685692425*^9}},ExpressionUUID->"4e5b3f47-397c-4aa5-b634-\
+c55c40338a9d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{"ClearAll", "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"exp", " ", "=", " ", 
+   RowBox[{
+    SuperscriptBox["a", "2"], "+", 
+    SuperscriptBox["b", "2"], "+", 
+    SuperscriptBox["c", "2"]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Block", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"a", " ", "=", " ", 
+      RowBox[{"1", " ", "+", " ", "x"}]}], ",", " ", "x"}], "}"}], ",", " ", 
+   RowBox[{
+    RowBox[{"x", " ", "=", " ", "5"}], ";", " ", 
+    RowBox[{"Print", "[", "exp", "]"}]}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.907085612797439*^9, 3.9070856690056334`*^9}},
+ CellLabel->"In[45]:=",ExpressionUUID->"ba8fe6b9-a568-4728-b21e-2fd9b15bdc11"],
+
+Cell[BoxData["ClearAll"], "Output",
+ CellChangeTimes->{{3.907085649092349*^9, 3.907085692795232*^9}},
+ CellLabel->"Out[45]=",ExpressionUUID->"06205091-8705-44ae-ac7b-0839719f3469"],
+
+Cell[BoxData[
+ RowBox[{"36", "+", 
+  SuperscriptBox["b", "2"], "+", 
+  SuperscriptBox["c", "2"]}]], "Print",
+ CellChangeTimes->{{3.907085649097931*^9, 3.907085692800198*^9}},
+ CellLabel->
+  "During evaluation of \
+In[45]:=",ExpressionUUID->"d364bb58-9a1d-48e6-8900-42c8feb75c9e"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{869.0445859872613, 943.3375796178345},
+WindowMargins->{{7.7961783439490455`, Automatic}, {
+  7.602484472049696, Automatic}},
+FrontEndVersion->"13.1 for Linux x86 (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"cb2d753b-3ded-4ac9-a3f9-12b5e33e9f14"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 174, 3, 67, "Section",ExpressionUUID->"6b1c9583-33d9-415b-8604-1a7913f73bc1"],
+Cell[757, 27, 325, 7, 58, "Text",ExpressionUUID->"6a692685-4a4a-4c98-b9a3-57c9792f83e2"],
+Cell[CellGroupData[{
+Cell[1107, 38, 635, 16, 74, "Input",ExpressionUUID->"c4792915-80c6-49da-b875-b12b7227f3d5"],
+Cell[1745, 56, 302, 8, 23, "Print",ExpressionUUID->"f30d5695-e382-450e-9569-564d315bfc38"]
+}, Open  ]],
+Cell[2062, 67, 626, 11, 104, "Text",ExpressionUUID->"48eb0347-a272-49c8-8d48-849cf84c9e33"],
+Cell[CellGroupData[{
+Cell[2713, 82, 608, 15, 74, "Input",ExpressionUUID->"90253b81-b106-41d1-831b-b4011630b800"],
+Cell[3324, 99, 302, 8, 23, "Print",ExpressionUUID->"81957e90-a493-434a-845c-0f4b5eb08044"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3675, 113, 151, 3, 67, "Section",ExpressionUUID->"9462d699-8e67-4798-9ea9-6c367d8926c5"],
+Cell[3829, 118, 375, 8, 58, "Text",ExpressionUUID->"57528493-eda6-4ace-b010-1ce0ea5cce44"],
+Cell[CellGroupData[{
+Cell[4229, 130, 609, 16, 95, "Input",ExpressionUUID->"25e6e24a-8cbe-4b95-8629-d46a153da723"],
+Cell[CellGroupData[{
+Cell[4863, 150, 281, 7, 23, "Print",ExpressionUUID->"12d19c51-97c3-4f68-81fa-e41a450210de"],
+Cell[5147, 159, 202, 4, 23, "Print",ExpressionUUID->"472fba33-3459-4d3c-958f-c92ef5766468"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5398, 169, 612, 16, 94, "Input",ExpressionUUID->"91812942-76c1-4cea-afa8-5d5849426802"],
+Cell[6013, 187, 188, 3, 33, "Output",ExpressionUUID->"e6ea3f8f-aa92-4660-a1dc-15fd81abc77a"],
+Cell[6204, 192, 305, 8, 23, "Print",ExpressionUUID->"4024b238-9153-4412-92f2-8d353dbf91db"],
+Cell[6512, 202, 179, 3, 33, "Output",ExpressionUUID->"e54891b9-b92a-43bd-b419-a62780b251ee"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6740, 211, 158, 3, 67, "Section",ExpressionUUID->"4e5b3f47-397c-4aa5-b634-c55c40338a9d"],
+Cell[CellGroupData[{
+Cell[6923, 218, 689, 17, 74, "Input",ExpressionUUID->"ba8fe6b9-a568-4728-b21e-2fd9b15bdc11"],
+Cell[7615, 237, 180, 2, 33, "Output",ExpressionUUID->"06205091-8705-44ae-ac7b-0839719f3469"],
+Cell[7798, 241, 279, 7, 23, "Print",ExpressionUUID->"d364bb58-9a1d-48e6-8900-42c8feb75c9e"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
